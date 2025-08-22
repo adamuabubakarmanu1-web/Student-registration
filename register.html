@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <style>
+    /* Background */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* Form Container */
+    .form-container {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      width: 380px;
+      animation: fadeIn 1s ease-in-out;
+      color: #fff;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    label {
+      font-weight: 500;
+      display: block;
+      margin: 10px 0 5px;
+      color: #f1f1f1;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      outline: none;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    input::placeholder {
+      color: #ddd;
+    }
+
+    input:focus, select:focus {
+      background: rgba(255,255,255,0.3);
+      border: 1px solid #00f2fe;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Registration Form</h2>
+    <form action="https://adamu.fwh.is/register.php" method="POST">
+      <!-- Full Name -->
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name">
+
+      <!-- Role -->
+      <label for="role">Role</label>
+      <select id="role" name="role" onchange="toggleMatric()">
+        <option value="" disabled selected>-- Select Role --</option>
+        <option value="student">Student</option>
+        <option value="supervisor">Supervisor</option>
+      </select>
+
+      <!-- Matric Number (only for students) -->
+      <div id="matric-field" style="display:none;">
+        <label for="matric">Matric Number</label>
+        <input type="text" id="matric" name="matric" placeholder="e.g. CSC/2021/123">
+      </div>
+
+      <!-- Phone Number -->
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required placeholder="e.g. 08012345678">
+
+      <!-- Department -->
+      <label for="department">Department</label>
+      <select id="department" name="department" required>
+        <option value="" disabled selected>-- Select Department --</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Criminology">Criminology</option>
+        <option value="Mathematics">Mathematics</option>
+        <option value="Economics">Economics</option>
+      </select>
+
+      <!-- Email -->
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+      <!-- Password -->
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required placeholder="Enter password">
+
+      <!-- Submit -->
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    function toggleMatric() {
+      let role = document.getElementById("role").value;
+      let matricField = document.getElementById("matric-field");
+      if (role === "student") {
+        matricField.style.display = "block";
+      } else {
+        matricField.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
